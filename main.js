@@ -45,6 +45,7 @@ xrt = JSON.parse('{' + a_tables.join(',') + '}');
 // Def --------------------------------------------------------------------------------------------------------------
 function Def() {
 DataParse();
+ Log('xrt',xrt);
 def = xrt; pagesets = def.pageset; pages = def.page; contents = def.content; site = pagesets['site']; home = pages['home'];
 Page();
 }
