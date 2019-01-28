@@ -5,8 +5,6 @@ var page; var page_id; var page_path; var page_style; var page_title; var page_d
 var xhrs=[]; var xrt; var html; var head_html; var page_item; var item_x; var cont_html; var cont_match; var cont_ref; // cont,item
 var rep_x; var rep_d; var rep_match; var rep_html_rep; var rep_table_id; var rep_item_id; var rep_file_ref; var rep_ref; var rep_html; // rep
 
-Log('hi','');
-
 var e_body = doc_body.querySelector('#e_body');
 var e_svc_script = doc_body.querySelector('script[data-site]'); if ( e_svc_script !== undefined && e_svc_script !== null ) { var e_def = e_svc_script.dataset['site'] };
 
@@ -47,6 +45,7 @@ xrt = JSON.parse('{' + a_tables.join(',') + '}');
 // Def --------------------------------------------------------------------------------------------------------------
 function Def() {
 DataParse();
+ Log('def',xrt);
 def = xrt; pagesets = def.pageset; pages = def.page; contents = def.content; site = pagesets['site']; home = pages['home'];
 Page();
 }
