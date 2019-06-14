@@ -236,7 +236,7 @@ if (type==='rep') { rep_x = rep_x.replace(props_i, rep_item[prop]) } else if (ty
 }
 // Embeds =============================================================================================================
 function Embeds() {
-var embds = html.match(/<\!DOCTYPE html>.+?<\/html>/g); if (embds !== null) { var embds_len = embds.length; for (var i = 0; i < embds_len; i++) { var embd = embds[i]; var gdoc_cont = embd.match(/<div id\=\"contents\">.+?<\/div>/g); html = html.replace(embd, gdoc_cont) } } // } for } if
+var embds = html.match(/\<\!DOCTYPE\shtml\>.+?\<\/html\>/g); if (embds !== null) { var embds_len = embds.length; for (var i = 0; i < embds_len; i++) { var embd = embds[i]; var gdoc_cont = embd.match(/\<div\sid\=\"contents\"\>.+?\<\/div\>/g); html = html.replace(embd, gdoc_cont) } } // } for } if
 }
 // DataGet ============================================================================================================
 function DataGet(type, url) {
