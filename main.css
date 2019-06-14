@@ -1,0 +1,30 @@
+html,body { margin: 0; padding: 0; font-family: sans-serif } ul { margin: 0; padding: 0; list-style-type: none } a { text-decoration: none } 
+h1,h2,h3,h4,h5,h6 { margin: 0; margin-block-start: 0; margin-block-end: 0; font-weight: normal }
+#e-_middle { display: flex; flex-direction: column } @media (min-width: 640px) { #e-_middle { flex-direction: row } #e-_center { flex-grow: 1 } #e-_left, #e-_right { flex-basis: content } }
+
+.bg-img { background-position: center center; background-size: contain; background-repeat: no-repeat; background-origin: border-box }
+
+.cards { display: flex; flex-flow: row wrap; justify-content: center; align-content: flex-start; align-items: center } 
+.card { display: inline-block; flex: 0 0 auto; color: black } 
+.card > * { display: block }
+
+.table { width: 100%; border-collapse: collapse; border-spacing: 0px }
+.table thead tr:last-child td { border-bottom: 2px solid #dddddd } 
+.table tbody tr td { border-bottom: 1px solid #dddddd } 
+.table td { padding: 8px } 
+.table thead td { font-size: 115% }
+
+.nav-top { display: flex }  /* nav wrap  nav > a,ul */
+.nav-top > ul { display: inline-flex }  /* horizontal bar */
+.nav-top > ul > li { display: inline-block }  /* horizontal item */
+.nav-top > ul > li ul { display: none; position: absolute; padding-left: 0; background: #FFFFFF }  /* drop menu:hidden */
+.nav-top > ul > li > ul li { display: block }  /* items:normal */   /*.nav-top li:hover { cursor: pointer }   items:hover */
+.nav-top ul li:focus-within > ul { display: block }  /* drop menu:show on tabbing */
+.nav-top ul li:hover > ul { display: block }  /* drop menu:show on hover */
+.nav-top ul li ul:hover { display: block }  /* drop menu:show on hover */
+.nav-top ul li ul li { clear: both; width: 100% }
+.nav-top a { display: block; color: black }
+
+.nav-left a { display: block; color: black }
+
+.nav-path a { color: black }
