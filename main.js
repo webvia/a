@@ -3,7 +3,7 @@
 var win = window; var his = win.history; var loc = win.location; var doc = win.document; var head = doc.head; var body = doc.body; // win,his,loc,doc,head,body
 body.insertAdjacentHTML('afterbegin', '<div id="e-_page"></div>'); var e_page = doc.getElementById('e-_page'); // e_page
 var u_loc; var u_par; var u_site; var u_path; var u_page; var u_item; // url location
-var pages_u; var contents_u; var pages; var contents; var p_home; var path_d; var page; var page_item; var page_data; // definition
+var pages_u; var contents_u; var pages; var contents; var p_all; var p_home; var path_d; var page; var page_item; var page_data; // definition
 var cont_match; var cont_ref; // cont
 var rep_item; var rep_x; var rep_match; var rep_u_item; var rep_ref; var rep_cont; var rep_html; // rep
 var html; var xrt; var xrt_a = []; var xrtu_a = []; var page_sep = '__'; var item_sep = '--'; var lev_sep = '..'; var cont_sep = '`~`'; var gsu1; var gsu2; // misc
@@ -21,7 +21,7 @@ if ( HasVal(u_site_x) ) { var site_ref = u_site_x } else if ( HasVal(e_site) ) {
 if (pages == undefined) { DataGet('pages', site_ref) } else { Page() }
 }
 // Site ===============================================================================================================
-function Pages() { pages = xrt; p_home = pages['_Home']; DataGet('contents', contents_u); }
+function Pages() { pages = xrt; p_home = pages['_Home']; if (pages['_All'] !== undefined) { p_all = pages['_All'] } else { p_all = {} }; DataGet('contents', contents_u); }
 function Contents() { contents = xrt; Page(); }
 //
 // Page ===============================================================================================================
@@ -58,28 +58,41 @@ path_d = path_d.join('\n');
 // page setup ---------------------------------------------------------------------------------------------------------
 if ( HasVal(u_page) ) { page = pages[u_page] } else { page = p_home }; // page or home
 if ( HasVal(page.group) ) { var pgrp = pages[page.group] } else { var pgrp = {} } // pgrp
-// main
-var h_main = ''; if ( HasVal(page.main)) { h_main = page.main } if ( h_main !== '' && !h_main.includes('(`') ) { h_main = '(`#'+ h_main +')' };
-// chrome
-var h_header = ''; if (HasVal(page.header)) { h_header = page.header } else if ( HasVal(pgrp.header) ) { h_header = pgrp.header } else if ( HasVal(p_home.header) ) { h_header = p_home.header } if ( h_header !== '' && !h_header.includes('(`') ) { h_header = '(`#'+ h_header +')' }; 
-var h_footer = ''; if (HasVal(page.footer)) { h_footer = page.footer } else if ( HasVal(pgrp.footer) ) { h_footer = pgrp.footer } else if ( HasVal(p_home.footer) ) { h_footer = p_home.footer } if ( h_footer !== '' && !h_footer.includes('(`') ) { h_footer = '(`#'+ h_footer +')' }; 
-var h_left = ''; if (HasVal(page.left)) { h_left = page.left } else if ( HasVal(pgrp.left) ) { h_left = pgrp.left } else if ( HasVal(p_home.left) ) { h_left = p_home.left } if ( h_left !== '' && !h_left.includes('(`') ) { h_left = '(`#'+ h_left +')' }; 
-var h_right = ''; if (HasVal(page.right)) { h_right = page.right } else if ( HasVal(pgrp.right) ) { h_right = pgrp.right } else if ( HasVal(p_home.right) ) { h_right = p_home.right } if ( h_right !== '' && !h_right.includes('(`') ) { h_right = '(`#'+ h_right +')' }; 
-var h_top = ''; if (HasVal(page.top)) { h_top = page.top } else if ( HasVal(pgrp.top) ) { h_top = pgrp.top } else if ( HasVal(p_home.top) ) { h_top = p_home.top } if ( h_top !== '' && !h_top.includes('(`') ) { h_top = '(`#'+ h_top +')' }; 
-var h_bottom = ''; if (HasVal(page.bottom)) { h_bottom = page.bottom } else if ( HasVal(pgrp.bottom) ) { h_bottom = pgrp.bottom } else if ( HasVal(p_home.bottom) ) { h_bottom = p_home.bottom } if ( h_bottom !== '' && !h_bottom.includes('(`') ) { h_bottom = '(`#'+ h_bottom +')' }; 
+
+// main, header, footer, left, right, top, bottom
+var h_main = ''; if (HasVal(page.main)) { h_main = page.main } else if ( HasVal(pgrp.main) ) { h_main = pgrp.main } else if ( HasVal(p_all.main) ) { h_main = p_all.main } else if ( HasVal(p_home.main) ) { h_main = p_home.main }  if ( h_main !== '' && !h_main.includes('<') && !h_main.includes('(`') ) { h_main = '(`#'+ h_main +')' };
+
+var h_header = ''; if (HasVal(page.header)) { h_header = page.header } else if ( HasVal(pgrp.header) ) { h_header = pgrp.header } else if ( HasVal(p_all.header) ) { h_header = p_all.header } else if ( HasVal(p_home.header) ) { h_header = p_home.header }  if ( h_header !== '' && !h_header.includes('<') && !h_header.includes('(`') ) { h_header = '(`#'+ h_header +')' };
+
+var h_footer = ''; if (HasVal(page.footer)) { h_footer = page.footer } else if ( HasVal(pgrp.footer) ) { h_footer = pgrp.footer } else if ( HasVal(p_all.footer) ) { h_footer = p_all.footer } else if ( HasVal(p_home.footer) ) { h_footer = p_home.footer }  if ( h_footer !== '' && !h_footer.includes('<') && !h_footer.includes('(`') ) { h_footer = '(`#'+ h_footer +')' };
+
+var h_left = ''; if (HasVal(page.left)) { h_left = page.left } else if ( HasVal(pgrp.left) ) { h_left = pgrp.left } else if ( HasVal(p_all.left) ) { h_left = p_all.left } else if ( HasVal(p_home.left) ) { h_left = p_home.left }  if ( h_left !== '' && !h_left.includes('<') && !h_left.includes('(`') ) { h_left = '(`#'+ h_left +')' };
+
+var h_right = ''; if (HasVal(page.right)) { h_right = page.right } else if ( HasVal(pgrp.right) ) { h_right = pgrp.right } else if ( HasVal(p_all.right) ) { h_right = p_all.right } else if ( HasVal(p_home.right) ) { h_right = p_home.right }  if ( h_right !== '' && !h_right.includes('<') && !h_right.includes('(`') ) { h_right = '(`#'+ h_right +')' };
+
+var h_top = ''; if (HasVal(page.top)) { h_top = page.top } else if ( HasVal(pgrp.top) ) { h_top = pgrp.top } else if ( HasVal(p_all.top) ) { h_top = p_all.top } else if ( HasVal(p_home.top) ) { h_top = p_home.top }  if ( h_top !== '' && !h_top.includes('<') && !h_top.includes('(`') ) { h_top = '(`#'+ h_top +')' };
+
+var h_bottom = ''; if (HasVal(page.bottom)) { h_bottom = page.bottom } else if ( HasVal(pgrp.bottom) ) { h_bottom = pgrp.bottom } else if ( HasVal(p_all.bottom) ) { h_bottom = p_all.bottom } else if ( HasVal(p_home.bottom) ) { h_bottom = p_home.bottom }  if ( h_bottom !== '' && !h_bottom.includes('<') && !h_bottom.includes('(`') ) { h_bottom = '(`#'+ h_bottom +')' };
+
 // head
-var h_head = ''; if (HasVal(page.head)) { h_head = page.head } else if ( HasVal(pgrp.head) ) { h_head = pgrp.head } else if ( HasVal(p_home.head) ) { h_head = p_home.head } if ( h_head !== '' && !h_head.includes('(`') ) { h_head = '(`#'+ h_head +')' }; 
-// meta
-var h_title = ''; if (HasVal(page.title)) { h_title = page.title } else if ( HasVal(pgrp.title) ) { h_title = pgrp.title } else if ( HasVal(p_home.title) ) { h_title = p_home.title } 
-var h_icon = ''; if (HasVal(page.icon)) { h_icon = page.icon } else if ( HasVal(pgrp.icon) ) { h_icon = pgrp.icon } else if ( HasVal(p_home.icon) ) { h_icon = p_home.icon } 
-var h_desc = ''; if (HasVal(page.description)) { h_desc = page.description } else if ( HasVal(pgrp.description) ) { h_desc = pgrp.description } else if ( HasVal(p_home.description) ) { h_desc = p_home.description } 
-// style
-var h_all_style_file = ''; var h_all_style_sheet = ''; var p_home_style = p_home.style; if (HasVal(p_home_style) && p_home_style.startsWith('http')) { h_page_style_file = p_home_style } else if (HasVal(p_home_style)) { h_all_style_sheet = '(`@' + gsu1 + p_home_style + gsu2 + ')' }
+var h_head = ''; if (HasVal(page.head)) { h_head = page.head } else if ( HasVal(pgrp.head) ) { h_head = pgrp.head } else if ( HasVal(p_all.head) ) { h_head = p_all.head } else if ( HasVal(p_home.head) ) { h_head = p_home.head }  if ( h_head !== '' && !h_top.includes('<') && !h_head.includes('(`') ) { h_head = '(`#'+ h_head +')' };
+
+// title, icon, description
+var h_title = ''; if (HasVal(page.title)) { h_title = page.title } else if ( HasVal(pgrp.title) ) { h_title = pgrp.title } else if ( HasVal(p_all.title) ) { h_title = p_all.title } else if ( HasVal(p_home.title) ) { h_title = p_home.title };
+
+var h_icon = ''; if (HasVal(page.icon)) { h_icon = page.icon } else if ( HasVal(pgrp.icon) ) { h_icon = pgrp.icon } else if ( HasVal(p_all.icon) ) { h_icon = p_all.icon } else if ( HasVal(p_home.icon) ) { h_icon = p_home.icon };
+
+var h_description = ''; if (HasVal(page.description)) { h_description = page.description } else if ( HasVal(pgrp.description) ) { h_description = pgrp.description } else if ( HasVal(p_all.description) ) { h_description = p_all.description } else if ( HasVal(p_home.description) ) { h_description = p_home.description };
+
+// styles
+var h_all_style_file = ''; var h_all_style_sheet = ''; var p_all_style = p_all.style; var p_home_style = p_home.style; if (HasVal(p_all_style) && p_all_style.startsWith('http')) { h_all_style_file = p_all_style } else if (HasVal(p_all_style)) { h_all_style_sheet = '(`@' + gsu1 + p_all_style + gsu2 + ')' } else if (HasVal(p_home_style) && p_home_style.startsWith('http')) { h_all_style_file = p_home_style } else if (HasVal(p_home_style)) { h_all_style_sheet = '(`@' + gsu1 + p_home_style + gsu2 + ')' }
+
 var h_pgrp_style_file = ''; var h_pgrp_style_sheet = ''; var pgrp_style = pgrp.style; if (HasVal(pgrp_style) && pgrp_style.startsWith('http')) { h_pgrp_style_file = pgrp_style } else if (HasVal(pgrp_style)) { h_pgrp_style_sheet = '(`@' + gsu1 + pgrp_style + gsu2 + ')' }
+
 var h_page_style_file = ''; var h_page_style_sheet = ''; var page_style = page.style; if (HasVal(page_style) && page_style.startsWith('http')) { h_page_style_file = page_style } else if (HasVal(page_style)) { h_page_style_sheet = '(`@' + gsu1 + page_style + gsu2 + ')' }
 
 // html ---------------------------------------------------------------------------------------------------------------
-html = '<header id="e-_header">'+ h_header +'</header><div id="e-_middle"><div id="e-_left">'+ h_left +'</div><div id="e-_center"><div id="e-_top">'+ h_top +'</div><main id="e-_main">'+ h_main +'</main><div id="e-_bottom">'+ h_bottom +'</div></div><div id="e-_right">'+ h_right +'</div></div><footer id="e-_footer">'+ h_footer +'</footer><template id="e-_head"><title>'+ h_title +'</title><link rel="shortcut icon" href="'+ h_icon +'"/><meta name="description" content="'+ h_desc +'"/><meta name="viewport" content="initial-scale=1, minimum-scale=1, width=device-width">'+ h_head +'<link rel="stylesheet" href="main.css"/><link rel="stylesheet" href="'+ h_all_style_file +'"/><style>'+ h_all_style_sheet +'</style><link rel="stylesheet" href="'+ h_pgrp_style_file +'"/><style>'+ h_pgrp_style_sheet +'</style><link rel="stylesheet" href="'+ h_page_style_file +'"/><style>'+ h_page_style_sheet +'</style></template>'; // ?v=' + Math.random() + '
+html = '<header id="e-_header">'+ h_header +'</header><div id="e-_middle"><div id="e-_left">'+ h_left +'</div><div id="e-_center"><div id="e-_top">'+ h_top +'</div><main id="e-_main">'+ h_main +'</main><div id="e-_bottom">'+ h_bottom +'</div></div><div id="e-_right">'+ h_right +'</div></div><footer id="e-_footer">'+ h_footer +'</footer><template id="e-_head"><title>'+ h_title +'</title><link rel="shortcut icon" href="'+ h_icon +'"/><meta name="description" content="'+ h_description +'"/><meta name="viewport" content="initial-scale=1, minimum-scale=1, width=device-width">'+ h_head +'<link rel="stylesheet" href="main.css"/><link rel="stylesheet" href="'+ h_all_style_file +'"/><style>'+ h_all_style_sheet +'</style><link rel="stylesheet" href="'+ h_pgrp_style_file +'"/><style>'+ h_pgrp_style_sheet +'</style><link rel="stylesheet" href="'+ h_page_style_file +'"/><style>'+ h_page_style_sheet +'</style></template>'; // ?v=' + Math.random() + '
 
 // get page item data -------------------------------------------------------------------------------------------------
 page_data = page.data;
@@ -113,7 +126,12 @@ if (resp === 'cont') {
 	else { html = html.replace(cont_match, xrt); }
 } // } if remote
 else if (resp === 'local') {
-	var content = contents[cont_ref]; var cont_data = content.data; var cont_main = content.main; var cont_bef = content.before; var cont_aft = content.after; var cont_alt = content.alternate;
+	var content = contents[cont_ref]; 
+	var cont_main = ''; if (HasVal(content.main)) { cont_main = content.main }
+	var cont_bef = ''; if (HasVal(content.before)) { cont_bef = content.before }
+	var cont_aft = ''; if (HasVal(content.after)) { cont_aft = content.after }
+	var cont_alt = ''; if (HasVal(content.alternate)) { cont_alt = content.alternate }
+	var cont_data = ''; if (HasVal(content.data)) { cont_data = content.data }
 	if (HasVal(cont_data)) { var cont_html_loc = '(`(#' + cont_ref + ')' + cont_main + cont_sep + cont_bef + cont_sep + cont_aft + cont_sep + cont_alt + '`)' } // for reps: (`(#cont_id)...<html>...`)
 	else { var cont_html_loc = cont_bef + cont_main + cont_aft }
 	html = html.replace(cont_match, cont_html_loc);
