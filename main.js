@@ -11,7 +11,7 @@ var html; var xrt; var xrt_a = []; var xrtu_a = []; var page_sep = '__'; var ite
 // Load ===============================================================================================================
 win.onload = function() { Load() }; win.onpopstate = function() { Load() };
 function Load() {
-body.style.background = 'url(http://www.mikromann.no/4bilder/big_loading_indicator.gif) center 2em / 5em 5em no-repeat';
+body.style.background = 'url(https://www.mikromann.no/4bilder/big_loading_indicator.gif) center 2em / 5em 5em no-repeat';
 var e_script = body.querySelector('script[data-site]'); if ( HasObj(e_script) ) { var e_site = e_script.dataset['s'] };
 u_loc = new URL(loc); u_par = u_loc.searchParams; u_site = u_par.get('s'); u_path = u_par.get('p');
 gsu1 = 'https://docs.google.com/spreadsheets/d/'+ u_site +'/gviz/tq?tqx=out:csv&sheet='; gsu2 = '&headers=1&tq=select+%2A';
