@@ -1,86 +1,70 @@
-<!doctype html><html><head><title>Paradise</title><link rel="shortcut icon" href=""/><style>
-/* STYLE =============================================================================================================*/
+<!doctype html><html><head><title>Search Realtor</title><link rel="shortcut icon" href="https://static.rdc.moveaws.com/favicon.ico" /><style>
 
-html, body { color: #000000 ; background-color: #FFFFFF ; font-size: 1.1rem }
-input:checked + label { color: blue ; font-weight: bold }
-input + label { cursor: pointer ; border-left: 2px solid #AAAAAA ; padding-left: 8px }
-label { padding-right: 24px }
-td > span { font-weight: bold ; margin-right: 32px }
-td { padding-bottom: 16px }
-input { display: none }
+html, body { color: #000000 ; background: #FFFFFF ; font-family: sans-serif ; font-size: 1.1em }
 
-/*====================================================================================================================*/
+.rad_set { display: flex ; border: 1px solid #DDDDDD ; border-radius: .75em ; background: #F8F8F8 ; padding: 1px }
+
+.rad_lab { margin: 0 1px 0 0 ; border: 1px solid transparent ; padding: .5em 1em .5em 1em ; cursor: pointer }
+
+.rad_lab:hover { border: 1px solid blue ; border-radius: .75em ; background: #FFFFFF }
+
+.rad:checked + .rad_lab { border: 1px solid blue ; border-radius: .75em ; background: #EEEEFF ; color: blue }  .rad { display: none }
+
+#search { border: 1px solid #DDDDDD ; border-radius: .75em ; background: #EEFFEE ; padding: .5em 1em .5em 1em ; color: green ; cursor: pointer }  #search:hover { border: 1px solid green }
+
+/*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 </style></head><body>
-<div id="page">
-<form>
-<table>
-<tr><td><span>City</span></td><td>
-<input name="city" type="radio" id="Mosheim_TN" value="Mosheim_TN" checked /><label for="Mosheim_TN">Greeneville</label>
-<input name="city" type="radio" id="Crossville_TN" value="Crossville_TN" /><label for="Crossville_TN">Crossville</label>
-<input name="city" type="radio" id="Livingston_TN" value="Livingston_TN" /><label for="Livingston_TN">Celina</label>
-<input name="city" type="radio" id="Waynesboro_TN" value="Waynesboro_TN" /><label for="Waynesboro_TN">Waynesboro</label>
-<input name="city" type="radio" id="Cabool_MO" value="Cabool_MO" /><label for="Cabool_MO">West Plains</label>
-</td></tr>
-<tr><td><span>Price</span></td><td>
-<input name="price" type="radio" id="price_60" value="60" /><label for="price_60">$60</label>
-<input name="price" type="radio" id="price_80" value="80" /><label for="price_80">$80</label>
-<input name="price" type="radio" id="price_100" value="100" /><label for="price_100">$100</label>
-<input name="price" type="radio" id="price_120" value="120" checked /><label for="price_120">$120</label>
-<input name="price" type="radio" id="price_140" value="140" /><label for="price_140">$140</label>
-<input name="price" type="radio" id="price_160" value="160" /><label for="price_160">$160</label>
-</td></tr>
-<tr><td><span>Acres</span></td><td>
-<input name="acres" type="radio" id="acres_5" value="217800" /><label for="acres_5">5 ac</label>
-<input name="acres" type="radio" id="acres_10" value="435600" checked /><label for="acres_10">10 ac</label>
-<input name="acres" type="radio" id="acres_15" value="653400" /><label for="acres_15">15 ac</label>
-</td></tr>
-<tr><td><span>Miles</span></td><td>
-<input name="miles" type="radio" id="miles_5" value="5" /><label for="miles_5">5 mi</label>
-<input name="miles" type="radio" id="miles_10" value="10" /><label for="miles_10">10 mi</label>
-<input name="miles" type="radio" id="miles_25" value="25" checked /><label for="miles_25">25 mi</label>
-</td></tr>
-<tr><td><span>&nbsp;</span></td><td>
-<button type="button" id="search">Search Realtor</button>
-</td></tr>
-</table>
-</form>
+
+<div class="rad_set" id="city">
+<input name="city" type="radio" class="rad" id="Parrottsville_TN" value="Parrottsville_TN" checked /><label class="rad_lab" for="Parrottsville_TN">Parrottsville</label><span></span>
+<input name="city" type="radio" class="rad" id="Crossville_TN" value="Crossville_TN" /><label class="rad_lab" for="Crossville_TN">Crossville</label>
+<input name="city" type="radio" class="rad" id="Celina_TN" value="Celina_TN" /><label class="rad_lab" for="Celina_TN">Celina</label>
+<input name="city" type="radio" class="rad" id="Waynesboro_TN" value="Waynesboro_TN" /><label class="rad_lab" for="Waynesboro_TN">Waynesboro</label>
+<input name="city" type="radio" class="rad" id="Cabool_MO" value="Cabool_MO" /><label class="rad_lab" for="Cabool_MO">Cabool</label>
 </div>
+<br>
+<div class="rad_set" id="price">
+<input name="price" type="radio" class="rad" id="price-80" value="80" /><label class="rad_lab" for="price-80">$80 k</label>
+<input name="price" type="radio" class="rad" id="price-100" value="100" /><label class="rad_lab" for="price-100">$100 k</label>
+<input name="price" type="radio" class="rad" id="price-120" value="120" checked /><label class="rad_lab" for="price-120">$120 k</label>
+<input name="price" type="radio" class="rad" id="price-140" value="140" /><label class="rad_lab" for="price-140">$140 k</label>
+<input name="price" type="radio" class="rad" id="price-160" value="160" /><label class="rad_lab" for="price-160">$160 k</label>
+</div>
+<br>
+<div class="rad_set" id="acres">
+<input name="acres" type="radio" class="rad" id="acres-5" value="217800" /><label class="rad_lab" for="acres-5">5 ac</label>
+<input name="acres" type="radio" class="rad" id="acres-10" value="435600" checked /><label class="rad_lab" for="acres-10">10 ac</label>
+<input name="acres" type="radio" class="rad" id="acres-15" value="653400" /><label class="rad_lab" for="acres-15">15 ac</label>
+</div>
+<br>
+<div class="rad_set" id="miles">
+<input name="miles" type="radio" class="rad" id="miles-5" value="5" /><label class="rad_lab" for="miles-5">5 mi</label>
+<input name="miles" type="radio" class="rad" id="miles-10" value="10" checked /><label class="rad_lab" for="miles-10">10 mi</label>
+<input name="miles" type="radio" class="rad" id="miles-25" value="25" /><label class="rad_lab" for="miles-25">25 mi</label>
+</div>
+<br><br>
+<div><span id="search">Search Realtor &rsaquo;<span></div>
 
 <script>
-/* SCRIPT ============================================================================================================*/
+/*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 let doc = window.document;
-let btn = doc.querySelector('#search');
+let search_button = doc.querySelector('#search');
 
-btn.onclick = function () {
+search_button.onclick = function () {
 
 let vals = [];
 let city = doc.querySelectorAll('input[name="city"]'); for (let i of city) { if (i.checked) { vals.push(i.value); break } }
 let price = doc.querySelectorAll('input[name="price"]'); for (let i of price) { if (i.checked) { vals.push('price-na-' + i.value + '000'); break } }
 let acres = doc.querySelectorAll('input[name="acres"]'); for (let i of acres) { if (i.checked) { vals.push('lot-sqft-' + i.value); break } }
 let miles = doc.querySelectorAll('input[name="miles"]'); for (let i of miles) { if (i.checked) { vals.push('radius-' + i.value); break } }
-vals = vals.join('/');
 
-let url = 'https://www.realtor.com/realestateandhomes-search/' + vals + '/pnd-hide/sby-6';
+let url = 'https://www.realtor.com/realestateandhomes-search/' + vals.join('/') + '/pnd-hide/sby-6';
 
 window.open(url, '_blank');
 } // end onclick
 
-
-/*====================================================================================================================*/
 </script></body></html>
 <!--
-
-http://localhost/Projects/Paradise/paradise.html
-
-https://www.realtor.com/realestateandhomes-search/
-
-Location:	Willow-Springs_MO	Mosheim_TN  /  Crossville_TN  /  Livingston_TN  /  Waynesboro_TN  /  Cabool_MO
-Price:	price-na-160000	$120,000
-Expand Search:	radius-50	5 | 10 | 25 | 50
-Lot Size:	lot-sqft-435600	5 (217800) | 10 (435600) | 15 (653400)
--Listing Status:	pnd-hide	Hide Pending
--Sort By:	sby-6	Newest
-
 
 -->
