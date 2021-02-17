@@ -1,54 +1,64 @@
 <!doctype html><html><head><title>Realtor Search</title><link rel="shortcut icon" href="https://static.rdc.moveaws.com/favicon.ico" /><style>
 
-body { background: white ; color: black ; font: 1.1em sans-serif }
+body { background: white ; color: black ; font: 1.1em sans-serif ; user-select: none }
 
-.radio_set { display: flex ; border: 1px solid #DDDDDD ; border-radius: .75em ; background: #F8F8F8 ; padding: 1px }
+.sp_1 { height: 1em }  .sp_2 { height: 2em }
 
-.radio_label { margin: 0 1px 0 0 ; border: 1px solid transparent ; border-radius: .75em ; padding: .5em 1em .5em 1em ; cursor: pointer }
+.choices { display: flex ; border: 1px solid #DDDDDD ; border-radius: 1em ; background: #F8F8F8 ; padding: 1px }
+.ch_l { margin: 0 1px 0 0 ; border: 1px solid transparent ; border-radius: 1em ; padding: .5em 1em .5em 1em ; cursor: pointer }
+.ch_l:hover { border: 1px solid blue ; background: white }
+.ch_i:checked + .ch_l { border: 1px solid blue ; background: #EEEEFF ; color: blue }  .ch_i { display: none }
 
-.radio_label:hover { border: 1px solid blue ; border-radius: .75em ; background: #FFFFFF }
+#search { border: 1px solid green ; border-radius: .5em ; background: #EEFFEE ; padding: .5em 1em .5em 1em ; color: green ; cursor: pointer }  #search:hover { background: green ; color: white }
+#reset { border: 1px solid gray ; border-radius: .5em ; background: #EEEEEE ; padding: .4em .8em .4em .8em ; color: black ; cursor: pointer }  #reset:hover { background: gray ; color: white }
 
-.radio_input:checked + .radio_label { border: 1px solid blue ; background: #EEEEFF ; color: blue }  .radio_input { display: none }
-
-#search { border: 1px solid green ; border-radius: .75em ; background: #EEFFEE ; padding: .5em 1em .5em 1em ; color: green ; cursor: pointer }
-#search:hover { background: green ; padding: .5em 1em .5em 1em ; color: white }
 
 /*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 </style></head><body>
-
-<fieldset class="radio_set" id="city">
-<input name="city" type="radio" class="radio_input" id="Parrottsville_TN" value="Parrottsville_TN" checked /><label class="radio_label" for="Parrottsville_TN">Parrottsville</label><span></span>
-<input name="city" type="radio" class="radio_input" id="Crossville_TN" value="Crossville_TN" /><label class="radio_label" for="Crossville_TN">Crossville</label>
-<input name="city" type="radio" class="radio_input" id="Celina_TN" value="Celina_TN" /><label class="radio_label" for="Celina_TN">Celina</label>
-<input name="city" type="radio" class="radio_input" id="Waynesboro_TN" value="Waynesboro_TN" /><label class="radio_label" for="Waynesboro_TN">Waynesboro</label>
-<input name="city" type="radio" class="radio_input" id="Cabool_MO" value="Cabool_MO" /><label class="radio_label" for="Cabool_MO">Cabool</label>
+<form>
+<fieldset class="choices" id="type">
+<input name="type" type="checkbox" class="ch_i" id="type_house" value="single-family-home" checked /><label class="ch_l" for="type_house">House</label>
+<input name="type" type="checkbox" class="ch_i" id="type_mobile" value="mfd-mobile-home" checked /><label class="ch_l" for="type_mobile">Mobile</label>
+<input name="type" type="checkbox" class="ch_i" id="type_land" value="farms-ranches,land" checked /><label class="ch_l" for="type_land">Land</label>
 </fieldset>
-<br>
-<fieldset class="radio_set" id="price">
-<input name="price" type="radio" class="radio_input" id="price_80" value="80" /><label class="radio_label" for="price_80">$80 k</label>
-<input name="price" type="radio" class="radio_input" id="price_100" value="100" /><label class="radio_label" for="price_100">$100 k</label>
-<input name="price" type="radio" class="radio_input" id="price_120" value="120" checked /><label class="radio_label" for="price_120">$120 k</label>
-<input name="price" type="radio" class="radio_input" id="price_160" value="160" /><label class="radio_label" for="price_160">$160 k</label>
-<input name="price" type="radio" class="radio_input" id="price_200" value="200" /><label class="radio_label" for="price_200">$200 k</label>
+<div class="sp_1"></div>
+<fieldset class="choices" id="city">
+<input name="city" type="radio" class="ch_i" id="Mohawk_TN" value="Mohawk_TN" checked /><label class="ch_l" for="Mohawk_TN">Mohawk</label><span></span>
+<input name="city" type="radio" class="ch_i" id="Crossville_TN" value="Crossville_TN" /><label class="ch_l" for="Crossville_TN">Crossville</label>
+<input name="city" type="radio" class="ch_i" id="Celina_TN" value="Celina_TN" /><label class="ch_l" for="Celina_TN">Celina</label>
+<input name="city" type="radio" class="ch_i" id="Waynesboro_TN" value="Waynesboro_TN" /><label class="ch_l" for="Waynesboro_TN">Waynesboro</label>
+<input name="city" type="radio" class="ch_i" id="Cabool_MO" value="Cabool_MO" /><label class="ch_l" for="Cabool_MO">Cabool</label>
 </fieldset>
-<br>
-<fieldset class="radio_set" id="acres">
-<input name="acres" type="radio" class="radio_input" id="acres_5" value="217800" /><label class="radio_label" for="acres_5">5 ac</label>
-<input name="acres" type="radio" class="radio_input" id="acres_10" value="435600" checked /><label class="radio_label" for="acres_10">10 ac</label>
-<input name="acres" type="radio" class="radio_input" id="acres_15" value="653400" /><label class="radio_label" for="acres_15">15 ac</label>
-<input name="acres" type="radio" class="radio_input" id="acres_20" value="871200" /><label class="radio_label" for="acres_20">20 ac</label>
+<div class="sp_1"></div>
+<fieldset class="choices" id="price">
+<input name="price" type="radio" class="ch_i" id="price_80" value="80" /><label class="ch_l" for="price_80">$80 k</label>
+<input name="price" type="radio" class="ch_i" id="price_100" value="100" /><label class="ch_l" for="price_100">$100 k</label>
+<input name="price" type="radio" class="ch_i" id="price_120" value="120" checked /><label class="ch_l" for="price_120">$120 k</label>
+<input name="price" type="radio" class="ch_i" id="price_160" value="160" /><label class="ch_l" for="price_160">$160 k</label>
+<input name="price" type="radio" class="ch_i" id="price_200" value="200" /><label class="ch_l" for="price_200">$200 k</label>
 </fieldset>
-<br>
-<fieldset class="radio_set" id="miles">
-<input name="miles" type="radio" class="radio_input" id="miles_5" value="5" /><label class="radio_label" for="miles_5">5 mi</label>
-<input name="miles" type="radio" class="radio_input" id="miles_10" value="10" /><label class="radio_label" for="miles_10">10 mi</label>
-<input name="miles" type="radio" class="radio_input" id="miles_25" value="25" checked /><label class="radio_label" for="miles_25">25 mi</label>
-<input name="miles" type="radio" class="radio_input" id="miles_50" value="50" /><label class="radio_label" for="miles_50">50 mi</label>
-<input name="miles" type="radio" class="radio_input" id="miles_100" value="100" /><label class="radio_label" for="miles_100">100 mi</label>
+<div class="sp_1"></div>
+<fieldset class="choices" id="acres">
+<input name="acres" type="radio" class="ch_i" id="acres_5" value="217800" /><label class="ch_l" for="acres_5">5 ac</label>
+<input name="acres" type="radio" class="ch_i" id="acres_10" value="435600" checked /><label class="ch_l" for="acres_10">10 ac</label>
+<input name="acres" type="radio" class="ch_i" id="acres_15" value="653400" /><label class="ch_l" for="acres_15">15 ac</label>
+<input name="acres" type="radio" class="ch_i" id="acres_20" value="871200" /><label class="ch_l" for="acres_20">20 ac</label>
+<input name="acres" type="radio" class="ch_i" id="acres_30" value="1306800" /><label class="ch_l" for="acres_30">30 ac</label>
+<input name="acres" type="radio" class="ch_i" id="acres_40" value="1742400" /><label class="ch_l" for="acres_40">40 ac</label>
 </fieldset>
-<br><br>
+<div class="sp_1"></div>
+<fieldset class="choices" id="miles">
+<input name="miles" type="radio" class="ch_i" id="miles_5" value="5" /><label class="ch_l" for="miles_5">5 mi</label>
+<input name="miles" type="radio" class="ch_i" id="miles_10" value="10" /><label class="ch_l" for="miles_10">10 mi</label>
+<input name="miles" type="radio" class="ch_i" id="miles_25" value="25" checked /><label class="ch_l" for="miles_25">25 mi</label>
+<input name="miles" type="radio" class="ch_i" id="miles_50" value="50" /><label class="ch_l" for="miles_50">50 mi</label>
+<input name="miles" type="radio" class="ch_i" id="miles_100" value="100" /><label class="ch_l" for="miles_100">100 mi</label>
+</fieldset>
+<div class="sp_2"></div>
 <div><span id="search">Search Realtor &rsaquo;<span></div>
-
+<div class="sp_2"></div>
+<div><input id="reset" type="reset" value="&cularr; Reset"></div>
+</form>
 <script>
 /*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -57,18 +67,23 @@ let search_button = doc.querySelector('#search');
 
 search_button.onclick = function () {
 
-let vals = [];
-let city = doc.querySelectorAll('input[name="city"]'); for (let i of city) { if (i.checked) { vals.push(i.value); break } }
-let price = doc.querySelectorAll('input[name="price"]'); for (let i of price) { if (i.checked) { vals.push('price-na-' + i.value + '000'); break } }
-let acres = doc.querySelectorAll('input[name="acres"]'); for (let i of acres) { if (i.checked) { vals.push('lot-sqft-' + i.value); break } }
-let miles = doc.querySelectorAll('input[name="miles"]'); for (let i of miles) { if (i.checked) { vals.push('radius-' + i.value); break } }
+let type_e  = doc.querySelectorAll('input[name="type"]');  let type  = []; for (let i of type_e)  { if (i.checked) { type.push(i.value) } } 
+let city_e  = doc.querySelectorAll('input[name="city"]');  let city  = ''; for (let i of city_e)  { if (i.checked) { city  = i.value;  break } }
+let price_e = doc.querySelectorAll('input[name="price"]'); let price = ''; for (let i of price_e) { if (i.checked) { price = i.value; break } }
+let acres_e = doc.querySelectorAll('input[name="acres"]'); let acres = ''; for (let i of acres_e) { if (i.checked) { acres = i.value; break } }
+let miles_e = doc.querySelectorAll('input[name="miles"]'); let miles = ''; for (let i of miles_e) { if (i.checked) { miles = i.value; break } }
 
-let url = 'https://www.realtor.com/realestateandhomes-search/' + vals.join('/') + '/pnd-hide/sby-6';
+if (type.length != 0) { type = 'type-' + type.join(',') + '/' } else { type = '' }
+
+let url = `https://www.realtor.com/realestateandhomes-search/${city}/${type}price-na-${price}000/lot-sqft-${acres}/radius-${miles}/pnd-hide/sby-6`;
 
 window.open(url, '_blank');
 } // end onclick
 
 </script></body></html>
 <!--
+
+type-single-family-home,condo,townhome,multi-family-home,mfd-mobile-home,farms-ranches,land
+
 
 -->
