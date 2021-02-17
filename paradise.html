@@ -17,28 +17,32 @@ body { background: white ; color: black ; font: 1.1em sans-serif ; user-select: 
 </style></head><body>
 <form>
 <fieldset class="choices" id="type">
+<input name="type" type="checkbox" class="ch_i" id="type_land" value="farms-ranches,land" checked /><label class="ch_l" for="type_land">Land</label>
 <input name="type" type="checkbox" class="ch_i" id="type_house" value="single-family-home" checked /><label class="ch_l" for="type_house">House</label>
 <input name="type" type="checkbox" class="ch_i" id="type_mobile" value="mfd-mobile-home" checked /><label class="ch_l" for="type_mobile">Mobile</label>
-<input name="type" type="checkbox" class="ch_i" id="type_land" value="farms-ranches,land" checked /><label class="ch_l" for="type_land">Land</label>
 </fieldset>
 <div class="sp_1"></div>
 <fieldset class="choices" id="city">
-<input name="city" type="radio" class="ch_i" id="Mohawk_TN" value="Mohawk_TN" checked /><label class="ch_l" for="Mohawk_TN">Mohawk</label><span></span>
-<input name="city" type="radio" class="ch_i" id="Crossville_TN" value="Crossville_TN" /><label class="ch_l" for="Crossville_TN">Crossville</label>
-<input name="city" type="radio" class="ch_i" id="Celina_TN" value="Celina_TN" /><label class="ch_l" for="Celina_TN">Celina</label>
-<input name="city" type="radio" class="ch_i" id="Waynesboro_TN" value="Waynesboro_TN" /><label class="ch_l" for="Waynesboro_TN">Waynesboro</label>
-<input name="city" type="radio" class="ch_i" id="Cabool_MO" value="Cabool_MO" /><label class="ch_l" for="Cabool_MO">Cabool</label>
+<input name="city" type="radio" class="ch_i" id="Mohawk_TN" value="Mohawk_TN" checked /><label class="ch_l" for="Mohawk_TN">Mohawk TN</label><span></span>
+<input name="city" type="radio" class="ch_i" id="Crossville_TN" value="Crossville_TN" /><label class="ch_l" for="Crossville_TN">Crossville TN</label>
+<input name="city" type="radio" class="ch_i" id="Celina_TN" value="Celina_TN" /><label class="ch_l" for="Celina_TN">Celina TN</label>
+<input name="city" type="radio" class="ch_i" id="Waynesboro_TN" value="Waynesboro_TN" /><label class="ch_l" for="Waynesboro_TN">Waynesboro TN</label>
+<input name="city" type="radio" class="ch_i" id="Cabool_MO" value="Cabool_MO" /><label class="ch_l" for="Cabool_MO">Cabool MO</label>
+<input name="city" type="radio" class="ch_i" id="Mt-Vernon_MO" value="Mt-Vernon_MO" /><label class="ch_l" for="Mt-Vernon_MO">Mt Vernon MO</label>
 </fieldset>
 <div class="sp_1"></div>
 <fieldset class="choices" id="price">
 <input name="price" type="radio" class="ch_i" id="price_80" value="80" /><label class="ch_l" for="price_80">$80 k</label>
 <input name="price" type="radio" class="ch_i" id="price_100" value="100" /><label class="ch_l" for="price_100">$100 k</label>
 <input name="price" type="radio" class="ch_i" id="price_120" value="120" checked /><label class="ch_l" for="price_120">$120 k</label>
+<input name="price" type="radio" class="ch_i" id="price_140" value="140" /><label class="ch_l" for="price_140">$140 k</label>
 <input name="price" type="radio" class="ch_i" id="price_160" value="160" /><label class="ch_l" for="price_160">$160 k</label>
+<input name="price" type="radio" class="ch_i" id="price_180" value="180" /><label class="ch_l" for="price_180">$180 k</label>
 <input name="price" type="radio" class="ch_i" id="price_200" value="200" /><label class="ch_l" for="price_200">$200 k</label>
 </fieldset>
 <div class="sp_1"></div>
 <fieldset class="choices" id="acres">
+<input name="acres" type="radio" class="ch_i" id="acres_1" value="43560" /><label class="ch_l" for="acres_1">1 ac</label>
 <input name="acres" type="radio" class="ch_i" id="acres_5" value="217800" /><label class="ch_l" for="acres_5">5 ac</label>
 <input name="acres" type="radio" class="ch_i" id="acres_10" value="435600" checked /><label class="ch_l" for="acres_10">10 ac</label>
 <input name="acres" type="radio" class="ch_i" id="acres_15" value="653400" /><label class="ch_l" for="acres_15">15 ac</label>
@@ -48,6 +52,7 @@ body { background: white ; color: black ; font: 1.1em sans-serif ; user-select: 
 </fieldset>
 <div class="sp_1"></div>
 <fieldset class="choices" id="miles">
+<input name="miles" type="radio" class="ch_i" id="miles_1" value="1" /><label class="ch_l" for="miles_1">1 mi</label>
 <input name="miles" type="radio" class="ch_i" id="miles_5" value="5" /><label class="ch_l" for="miles_5">5 mi</label>
 <input name="miles" type="radio" class="ch_i" id="miles_10" value="10" /><label class="ch_l" for="miles_10">10 mi</label>
 <input name="miles" type="radio" class="ch_i" id="miles_25" value="25" checked /><label class="ch_l" for="miles_25">25 mi</label>
@@ -78,12 +83,9 @@ if (type.length != 0) { type = 'type-' + type.join(',') + '/' } else { type = ''
 let url = `https://www.realtor.com/realestateandhomes-search/${city}/${type}price-na-${price}000/lot-sqft-${acres}/radius-${miles}/pnd-hide/sby-6`;
 
 window.open(url, '_blank');
-} // end onclick
+}
 
 </script></body></html>
 <!--
-
 type-single-family-home,condo,townhome,multi-family-home,mfd-mobile-home,farms-ranches,land
-
-
 -->
