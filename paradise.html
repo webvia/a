@@ -1,16 +1,17 @@
 <!doctype html><html><head><title>Realtor Search</title><link rel="shortcut icon" href="https://static.rdc.moveaws.com/favicon.ico" /><style>
 
 body { background: white ; color: black ; font: 1.1em sans-serif ; user-select: none }
+a:link, a:visited, a:hover { text-decoration: none ; color: blue }  a[target="_blank"]:hover { text-decoration: underline ; cursor: ne-resize }
 
-.sp_1 { height: 1em }  .sp_2 { height: 2em }
+.sp_1 { height: 1em }  .sp_2 { height: 2em }  .sp_3 { height: 3em }
 
-.choices { display: flex ; border: 1px solid #DDDDDD ; border-radius: 1em ; background: #F8F8F8 ; padding: 1px }
-.ch_l { margin: 0 1px 0 0 ; border: 1px solid transparent ; border-radius: 1em ; padding: .5em 1em .5em 1em ; cursor: pointer }
+.choices { display: flex ; border: 1px solid #CCCCCC ; border-radius: 2em ; background: #F3F3F3 ; padding: 1px }
+.ch_l { margin: 0 1px 0 0 ; border: 1px solid transparent ; border-radius: 2em ; padding: .5em 1em .5em 1em ; cursor: pointer }
 .ch_l:hover { border: 1px solid blue ; background: white }
 .ch_i:checked + .ch_l { border: 1px solid blue ; background: #EEEEFF ; color: blue }  .ch_i { display: none }
 
 #search { border: 1px solid green ; border-radius: .5em ; background: #EEFFEE ; padding: .5em 1em .5em 1em ; color: green ; cursor: pointer }  #search:hover { background: green ; color: white }
-#reset { border: 1px solid gray ; border-radius: .5em ; background: #EEEEEE ; padding: .4em .8em .4em .8em ; color: black ; cursor: pointer }  #reset:hover { background: gray ; color: white }
+#reset { border: 1px solid gray ; border-radius: .5em ; background: #EFEFEF ; padding: .4em .8em .4em .8em ; color: black ; cursor: pointer }  #reset:hover { background: gray ; color: white }
 
 
 /*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -59,11 +60,20 @@ body { background: white ; color: black ; font: 1.1em sans-serif ; user-select: 
 <input name="miles" type="radio" class="ch_i" id="miles_50" value="50" /><label class="ch_l" for="miles_50">50 mi</label>
 <input name="miles" type="radio" class="ch_i" id="miles_100" value="100" /><label class="ch_l" for="miles_100">100 mi</label>
 </fieldset>
-<div class="sp_2"></div>
+<div class="sp_3"></div>
 <div><span id="search">Search Realtor &rsaquo;<span></div>
 <div class="sp_2"></div>
 <div><input id="reset" type="reset" value="&cularr; Reset"></div>
 </form>
+
+<div class="sp_3"></div>
+
+<div>
+<a href="https://www.realtor.com/myaccount/saved_homes" target="_blank">Saved Homes</a>&nbsp;|&nbsp;
+<a href="https://www.realtor.com/myaccount/saved_searches" target="_blank">Saved Searches</a>&nbsp;|&nbsp;
+<a href="https://www.realtor.com/realestateforsale" target="_blank">New Search</a>
+</div>
+
 <script>
 /*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
